@@ -1,0 +1,510 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{AnnaTex}[2025/10/16 Report formatting for uni]
+
+\usepackage[a4paper, margin=2.54cm]{geometry}
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage{enumitem}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{filecontents}
+\usepackage{verbatim}
+\usepackage{adjustbox}
+\usepackage{eurosym}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{array}
+\usepackage{float}
+\usepackage[normalem]{ulem}
+\usepackage{tabularx}
+\usepackage{csvsimple}
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage[final]{minted}
+\usepackage{caption}
+\usepackage{multicol}
+\usepackage{float}
+\usepackage{tcolorbox}
+\tcbuselibrary{listings,skins,breakable}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{caption}
+\usepackage{float}
+
+\usepackage{pgfplotstable}
+\usepackage{array}
+\usepackage{csvsimple}
+\usepackage{xparse}
+
+% --- Dependencies ---
+\RequirePackage{xcolor}
+\RequirePackage{graphicx}
+\RequirePackage{titlesec}
+\RequirePackage{fancyhdr}
+
+\RequirePackage{float}
+\RequirePackage{tcolorbox}
+\RequirePackage{listings}
+
+\RequirePackage[T1]{fontenc}
+\RequirePackage[utf8]{inputenc}
+\RequirePackage{listingsutf8}
+
+\lstset{inputencoding=utf8}
+
+\pgfplotsset{compat=1.18}
+
+
+\lstset{literate=
+  {“}{{"}}1 {”}{{"}}1 {‘}{{'}}1 {’}{{'}}1
+  {–}{{-}}1 {—}{{-}}1
+}
+
+% --- Listings default look ---
+\lstdefinestyle{annaListing}{
+  numbers=left,
+  numberstyle=\tiny\color{gray!70},
+  numbersep=8pt,
+  basicstyle=\ttfamily\small,
+  keywordstyle=\bfseries\color{blue!60!black},
+  commentstyle=\itshape\color{gray!70},
+  stringstyle=\color{green!40!black},
+  breaklines=true,
+  showstringspaces=false,
+  tabsize=2
+}
+
+% --- tcolorbox default look ---
+\tcbset{
+  annaTC/.style={
+    enhanced,
+    breakable,
+    frame hidden,
+    boxrule=0.4pt,
+    colback=gray!4,
+    colframe=gray!60,
+    arc=2mm,
+    sharp corners=all,
+    left=6pt,right=6pt,top=6pt,bottom=6pt
+  }
+}
+
+% ======================================================
+% Title page
+% Preamble to define parameters, should pass anything in directly
+
+\newcommand{\@Author}{}
+\newcommand{\Author}[1] {
+  \renewcommand{\@Author}{#1}
+}
+
+\newcommand{\@School}{}
+\newcommand{\School}[1] {
+  \renewcommand{\@School}{#1}
+}
+
+\newcommand{\@AuthorID}{}
+\newcommand{\AuthorID}[1] {
+  \renewcommand{\@AuthorID}{#1}
+}
+
+\newcommand{\@Title}{}
+\newcommand{\Title}[1] {
+  \renewcommand{\@Title}{#1}
+}
+
+\newcommand{\@Semester}{}
+\newcommand{\Semester}[1] {
+  \renewcommand{\@Semester}{#1}
+}
+
+\newcommand{\@Degree}{}
+\newcommand{\Degree}[1] {
+  \renewcommand{\@Degree}{#1}
+}
+
+\newcommand{\@Street}{}
+\newcommand{\Street}[1] {
+  \renewcommand{\@Street}{#1}
+}
+
+\newcommand{\@Suburb}{}
+\newcommand{\Suburb}[1] {
+  \renewcommand{\@Suburb}{#1}
+}
+
+\newcommand{\@Postcode}{}
+\newcommand{\Postcode}[1] {
+  \renewcommand{\@Postcode}{#1}
+}
+
+\newcommand{\@Unitcode}{}
+\newcommand{\Unitcode}[1] {
+  \renewcommand{\@Unitcode}{#1}
+}
+
+\newcommand{\@Unitcodee}{}
+\newcommand{\Unitcodee}[1] {
+  \renewcommand{\@Unitcodee}{#1}
+}
+
+\newcommand{\@Unitname}{}
+\newcommand{\Unitname}[1] {
+  \renewcommand{\@Unitname}{#1}
+}
+
+
+\newcommand{\TitlePage}[0] {
+  \newcommand{\HRule}{\rule{\linewidth}{0.5mm}} 
+  \fontsize{12pt}{14pt}\selectfont
+
+  \center
+  \vspace*{3cm}
+
+  \textit{\@Title}\\[2cm]
+
+  \vspace{4cm}
+
+  \textit{\@Author}\\
+  \textit{\@AuthorID}\\
+  \vspace{9cm}
+
+  \text{{\@Degree} Project Thesis}\\
+  \text{\@School}\\
+  \text{Curtin University}\\
+
+  \vspace{0.5cm}
+
+  \text{\@Semester}
+  \vfill
+  \newpage
+}
+
+\newcommand{\IntroductoryLetter}[0] {
+  \begin{titlepage}
+  \fontsize{12pt}{14pt}\selectfont
+
+  \vspace*{2cm}
+
+  % ---------- Sender address (top right) ----------
+  \begin{flushright}
+    \@Street,\\
+    \@Suburb,\\
+    WA \@Postcode\\[1cm]
+    \today
+  \end{flushright}
+
+  \vspace{2cm}
+
+  \begin{flushleft}
+    
+  
+  % ---------- Recipient ----------
+  The Head\\
+  \@School,\\
+  Curtin University,\\
+  Kent Street,\\
+  Bentley,\\
+  WA 6102
+
+  \vspace{2cm}
+
+  Dear Sir,
+
+  \vspace{1cm}
+
+  I submit this thesis entitled ``\textit{\@Title}'', based on
+  {\@Unitcode} \@Unitname~1 and
+  {\@Unitcodee} \@Unitname~2, undertaken
+  by me as part-requirement for the degree of \@Degree.
+
+  \vspace{1.5cm}
+
+  Yours faithfully,
+
+  \vspace{3cm}
+
+  \@Author\\
+  \@AuthorID
+  \end{flushleft}
+  \end{titlepage}
+}
+
+
+\newcommand{\Acknowledgements}{%
+  \clearpage
+  {\fontsize{12pt}{14pt}\selectfont
+    \section{Acknowledgements}
+    \begin{flushleft}
+      \input{acknowledgements.tex}
+    \end{flushleft}
+  }%
+  \newpage
+}
+
+\newcommand{\Abstract}{%
+  \clearpage
+  {\fontsize{12pt}{14pt}\selectfont
+    \section{Abstract}
+    \begin{flushleft}
+      \input{abstract.tex}
+    \end{flushleft}
+  }%
+  \newpage
+}
+
+\newcommand{\Nomenclature}{%
+  \clearpage
+  {\fontsize{12pt}{14pt}\selectfont
+    \section{Nomenclature}
+    \TableFromCSV{nomenclature.csv}
+  }%
+  \newpage
+}
+
+
+\usepackage{array} % once
+
+\newcommand{\TableFromCSV}[1]{%
+  \begin{center}
+    \begin{longtable}{
+      >{\centering\arraybackslash}p{4.9cm}|
+      >{\centering\arraybackslash}p{4.9cm}|
+      >{\centering\arraybackslash}p{4.9cm}
+    }
+
+    \textsf{\textbf{Symbol}} & \textsf{\textbf{Title}} & \textsf{\textbf{Unit(s)}} \\
+    \hline
+    \endfirsthead
+
+    \textsf{\textbf{Symbol}} & \textsf{\textbf{Title}} & \textsf{\textbf{Unit(s)}} \\
+    \hline
+    \endhead
+
+    \csvreader[
+      separator=comma,
+      head to column names,
+      late after line=\\
+    ]{nomenclature.csv}{}{%
+      \csvcoli & \csvcolii & \csvcoliii
+    }
+
+    \end{longtable}
+  \end{center}
+}
+
+
+\newcommand{\TableOfContents}{
+  \clearpage
+  {\fontsize{12pt}{14pt}\selectfont
+    % \section{Contents}
+    \tableofcontents
+    \listoffigures
+  }%
+  \newpage
+}
+
+\NewDocumentCommand{\Introduction}{O{Introduction}}{
+  \clearpage
+  {\fontsize{12pt}{14pt}\selectfont
+  \begin{flushleft}
+      \section{#1}
+      \input{introduction.tex}
+    \end{flushleft}
+  }%
+  \newpage
+}
+
+\NewDocumentCommand{\Background}{O{Background}}{
+  \clearpage
+  {\fontsize{12pt}{14pt}\selectfont
+  \begin{flushleft}
+      \section{#1}
+      \input{background.tex}
+    \end{flushleft}
+  }%
+  \newpage
+}
+
+
+\NewDocumentCommand{\Procedure}{O{Experimental Procedure}}{
+  \clearpage
+  {\fontsize{12pt}{14pt}\selectfont
+  \begin{flushleft}
+      \section{#1}
+      \input{procedure.tex}
+    \end{flushleft}
+  }%
+  \newpage
+}
+
+\NewDocumentCommand{\ResultsandDiscussion}{O{Results and Discussion}}{
+  \clearpage
+  {\fontsize{12pt}{14pt}\selectfont
+  \begin{flushleft}
+      \section{#1}
+      \input{results.tex}
+    \end{flushleft}
+  }%
+  \newpage
+}
+
+\NewDocumentCommand{\Conclusion}{O{Conclusion}}{
+  \clearpage
+  {\fontsize{12pt}{14pt}\selectfont
+  \begin{flushleft}
+      \section{#1}
+      \input{conclusion.tex}
+    \end{flushleft}
+  }%
+  \newpage
+}
+
+\NewDocumentCommand{\FutureWork}{O{Future Work}}{%
+  \clearpage
+  {\fontsize{12pt}{14pt}\selectfont
+    \begin{flushleft}
+      \section{#1}
+      \input{future_work.tex}
+    \end{flushleft}
+  }%
+  \newpage
+}
+
+\newcommand{\ExtraSection}[2]{
+  \clearpage
+  {\fontsize{12pt}{14pt}\selectfont
+  \begin{flushleft}
+      \section{#1}
+      \input{#2}
+    \end{flushleft}
+  }%
+  \newpage
+}
+
+\newcommand{\References}{
+  \clearpage
+  {\fontsize{12pt}{14pt}\selectfont
+    \nocite{*}
+    \bibliographystyle{IEEEtran} %Type?
+    \bibliography{references}
+  }%
+  \newpage
+}
+
+\newcommand{\Appendix}[1]{
+  \clearpage
+  {\fontsize{12pt}{14pt}\selectfont
+  \begin{flushleft}
+    
+    \section{Appendix #1}
+    \input{appendix#1.tex}
+  \end{flushleft}
+  }%
+  \newpage
+}
+
+
+% % ======================================================
+% % \CodeSideBySide
+% %   #1 file1
+% %   #2 file2
+% %   #3 caption1
+% %   #4 caption2
+% %   #5 overall caption
+% %   #6 overall label
+% %   #7 language1
+% %   #8 language2
+% % ======================================================
+% \newcommand{\CodeSideBySide}[8]{%
+%   \begin{figure}[H]\centering
+%     \begin{minipage}[t]{0.48\linewidth}
+%       \begin{tcolorbox}[annaTC]
+%         \lstinputlisting[
+%           style=annaListing,
+%           language={#7},
+%           caption={#3},
+%           inputencoding=\CodeInputEnc,
+%           captionpos=b
+%         ]{#1}
+%       \end{tcolorbox}
+%     \end{minipage}\hfill
+%     \begin{minipage}[t]{0.48\linewidth}
+%       \begin{tcolorbox}[annaTC]
+%         \lstinputlisting[
+%           style=annaListing,
+%           language={#8},
+%           inputencoding=\CodeInputEnc,
+%           caption={#4},
+%           captionpos=b
+%         ]{#2}
+%       \end{tcolorbox}
+%     \end{minipage}
+%     \caption{#5}
+%     \label{#6}
+%   \end{figure}%
+% }
+
+% % ======================================================
+% % \CodeStacked
+% %   #1 file1
+% %   #2 file2
+% %   #3 caption1
+% %   #4 caption2
+% %   #5 overall caption
+% %   #6 overall label
+% %   #7 language1
+% %   #8 language2
+% % ======================================================
+% \newcommand{\CodeStacked}[8]{%
+%   \begin{figure}[H]\centering
+%     % Top code block
+%     \lstinputlisting[
+%       style=annaListing,
+%       language={#7},
+%       inputencoding=\CodeInputEnc,
+%       caption={#3},
+%       captionpos=b
+%     ]{#1}
+
+%     \vspace{1em}
+
+%     % Bottom code block
+%     \lstinputlisting[
+%       style=annaListing,
+%       language={#8},
+%       inputencoding=\CodeInputEnc,
+%       caption={#4},
+%       captionpos=b
+%     ]{#2}
+
+%     \caption{#5}
+%     \label{#6}
+%   \end{figure}%
+% }
+
+
+% % ======================================================
+% % \SingleCode
+% %   #1 file
+% %   #2 language
+% %   #3 caption1
+% %   #4 label
+% % ======================================================
+% \newcommand{\SingleCode}[4]{%
+%   \begin{figure}[H]\centering
+%     \lstinputlisting[
+%       style=annaListing,
+%       language={#2},
+%       inputencoding=\CodeInputEnc,
+%       caption={#3},
+%       captionpos=b
+%     ]{#1}
+%     \label{#4}
+%   \end{figure}%
+% }
+
+% \newcommand{\CodeInputEnc}{utf8}

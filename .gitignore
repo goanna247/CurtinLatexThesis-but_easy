@@ -1,0 +1,91 @@
+# =========================
+# LaTeX core build files
+# =========================
+*.aux
+*.log
+*.out
+*.toc
+*.lof
+*.lot
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.synctex.gz(busy)
+*.nav
+*.snm
+*.vrb
+*.xdv
+*.pdfsync
+
+# =========================
+# Bibliography
+# =========================
+*.bbl
+*.bcf
+*.blg
+*.run.xml
+
+# =========================
+# Glossaries / nomenclature
+# =========================
+*.acn
+*.acr
+*.alg
+*.glg
+*.glo
+*.gls
+*.ist
+
+# =========================
+# Index
+# =========================
+*.idx
+*.ilg
+*.ind
+
+# =========================
+# Minted
+# =========================
+_minted*
+*.pyg
+
+# =========================
+# TikZ / PGF
+# =========================
+*.tikz
+*.pgf-plot.gnuplot
+*.pgf-plot.table
+
+# =========================
+# Latexmk temp files
+# =========================
+*.tmp
+*.bak
+*.sav
+
+# =========================
+# Editor / OS junk
+# =========================
+*.swp
+*.swo
+*.DS_Store
+Thumbs.db
+
+# =========================
+# TeX auxiliary directories
+# =========================
+latex.out/
+build/
+out/
+
+# =========================
+# Do NOT ignore source files
+# =========================
+!*.tex
+!*.bib
+!*.sty
+!*.cls
+!*.csv
+!*.png
+!*.jpg
+!*.pdf
