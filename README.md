@@ -6,25 +6,24 @@ All of the functions from the library are pascal case as camel case is already u
 If there is anything you want/need or if you spot a mistake please open an issue! I really appreciate other people spotting errors before i run into the myself. 
 
 # Things being added
-% Things i want to add
-% - images side by side, 2*2, ect
-% - spell check or smth? 
-% - easier bolding
-% - title page
-% - easier figures
-% - TABLES holy
-% - ethics/ai statement
-% - pre-do units and libraries needed 
-% - prog languages
-% - maybe make \cite into just \c
-% - add the underfull warning suppression 
-% - Find or build a better spellchecker - grammarly intergration with vs code???????/
+images side by side, 2*2, ect
+spell check or smth? 
+easier bolding
+title page
+easier figures
+TABLES holy
+ethics/ai statement
+pre-do units and libraries needed 
+prog languages
+maybe make \cite into just \c
+add the underfull warning suppression 
+Find or build a better spellchecker - grammarly intergration with vs code???????/
 
 
 
-## List of Functions: 
+# List of Functions: 
 
-### Preamble information 
+## Preamble information 
 Author
 AuthorID
 Street
@@ -38,7 +37,7 @@ Degree (eg. B. Eng. Mechatronic Engineering)
 Title
 Semester
 
-### Structure 
+## Structure 
 TitlePage
 IntroductoryLetter
 Acknowledgements
@@ -46,7 +45,7 @@ Abstract
 Nomenclature
 TableOfContents
 
-### Sections
+## Sections
 Introduction
 Background
 Procedure
@@ -57,10 +56,10 @@ ExtraSection
 References
 Appendix (eg. Appendix{A})
 
-### Code:
+## Code:
 Code2Horizontal - 
 Code2Vertical - 
 
-### Tables:
+## Tables:
 
-### Images: 
+## Images: 
