@@ -1,7 +1,11 @@
+# Getting Started
+To get started i would recommend downloading this package then modifying example.tex and the other .tex files to suit your thesis needs.
+
 All of the functions from the library are pascal case as camel case is already used by Latex and all other naming convensions suck, this is an easy way to differentiate where your functions are from. 
 
 If there is anything you want/need or if you spot a mistake please open an issue! I really appreciate other people spotting errors before i run into the myself. 
 
+# Things being added
 % Things i want to add
 % - images side by side, 2*2, ect
 % - spell check or smth? 
