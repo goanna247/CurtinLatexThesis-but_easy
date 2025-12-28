@@ -33,6 +33,7 @@
 \usepackage{xcolor}
 \usepackage{caption}
 \usepackage{float}
+\usepackage{array}
 
 \usepackage{pgfplotstable}
 \usepackage{array}
@@ -56,7 +57,6 @@
 \lstset{inputencoding=utf8}
 
 \pgfplotsset{compat=1.18}
-
 
 \lstset{literate=
   {“}{{"}}1 {”}{{"}}1 {‘}{{'}}1 {’}{{'}}1
@@ -92,10 +92,25 @@
   }
 }
 
+
+% ----------- Start document in roman numeral numbering -----------
+\AtBeginDocument{%
+  \pagenumbering{roman}
+}
+
+% ----------- Sections should be 1.0 ect (not 1) -----------
+\renewcommand{\thesection}{\arabic{section}.0}
+\renewcommand{\thesubsection}{\arabic{section}.\arabic{subsection}}
+
+% ----------- Command for headings that dont have a number -----------
+\newcommand{\FrontSection}[1]{%
+  \section*{#1}%
+  \addcontentsline{toc}{section}{#1}%
+}
+
 % ======================================================
 % Title page
 % Preamble to define parameters, should pass anything in directly
-
 \newcommand{\@Author}{}
 \newcommand{\Author}[1] {
   \renewcommand{\@Author}{#1}
@@ -157,9 +172,11 @@
 }
 
 
+% ----------- Generates title page from preamble information -----------
 \newcommand{\TitlePage}[0] {
   \newcommand{\HRule}{\rule{\linewidth}{0.5mm}} 
   \fontsize{12pt}{14pt}\selectfont
+  \thispagestyle{empty}
 
   \center
   \vspace*{3cm}
@@ -183,8 +200,9 @@
   \newpage
 }
 
+% ----------- Generates the default introductory letter from preamble info -----------
 \newcommand{\IntroductoryLetter}[0] {
-  \begin{titlepage}
+  \thispagestyle{plain}
   \fontsize{12pt}{14pt}\selectfont
 
   \vspace*{2cm}
@@ -221,7 +239,7 @@
   {\@Unitcodee} \@Unitname~2, undertaken
   by me as part-requirement for the degree of \@Degree.
 
-  \vspace{1.5cm}
+  \vspace{0.8cm}
 
   Yours faithfully,
 
@@ -230,14 +248,14 @@
   \@Author\\
   \@AuthorID
   \end{flushleft}
-  \end{titlepage}
 }
 
-
+% ----------- generates acknowledgment page from .tex file -----------
 \newcommand{\Acknowledgements}{%
   \clearpage
+  \thispagestyle{plain}
   {\fontsize{12pt}{14pt}\selectfont
-    \section{Acknowledgements}
+    \FrontSection{Acknowledgements}
     \begin{flushleft}
       \input{acknowledgements.tex}
     \end{flushleft}
@@ -247,8 +265,9 @@
 
 \newcommand{\Abstract}{%
   \clearpage
+  \thispagestyle{plain}
   {\fontsize{12pt}{14pt}\selectfont
-    \section{Abstract}
+    \FrontSection{Abstract}
     \begin{flushleft}
       \input{abstract.tex}
     \end{flushleft}
@@ -258,15 +277,13 @@
 
 \newcommand{\Nomenclature}{%
   \clearpage
+  \thispagestyle{plain}
   {\fontsize{12pt}{14pt}\selectfont
-    \section{Nomenclature}
+    \FrontSection{Nomenclature}
     \TableFromCSV{nomenclature.csv}
   }%
   \newpage
 }
-
-
-\usepackage{array} % once
 
 \newcommand{\TableFromCSV}[1]{%
   \begin{center}
@@ -299,19 +316,40 @@
 
 \newcommand{\TableOfContents}{
   \clearpage
+  \thispagestyle{plain}
   {\fontsize{12pt}{14pt}\selectfont
-    % \section{Contents}
     \tableofcontents
-    \listoffigures
+
+    \ListOfFigures
+    \ListOfTables
   }%
   \newpage
 }
 
+% Not finished, need to add figure and table commands beforehand
+\newcommand{\ListOfFigures}{
+  \begin{flushleft}
+    \FrontSection{List of Figures}
+  \end{flushleft}
+  % \listoffigures
+}
+
+\newcommand{\ListOfTables}{
+  \begin{flushleft}
+    \FrontSection{List of Tables}
+  \end{flushleft}
+  % \listoftables
+}
+
+%Has a default title or user can put in their own
 \NewDocumentCommand{\Introduction}{O{Introduction}}{
   \clearpage
+  \pagenumbering{arabic}
   {\fontsize{12pt}{14pt}\selectfont
   \begin{flushleft}
-      \section{#1}
+      \section*{#1} %Ensures that the contents doesnt mess with the number formatting
+      \refstepcounter{section}
+      \addcontentsline{toc}{section}{\thesection\space #1}
       \input{introduction.tex}
     \end{flushleft}
   }%
@@ -320,9 +358,12 @@
 
 \NewDocumentCommand{\Background}{O{Background}}{
   \clearpage
+  \thispagestyle{plain}
   {\fontsize{12pt}{14pt}\selectfont
   \begin{flushleft}
-      \section{#1}
+      \section*{#1}
+      \refstepcounter{section}
+      \addcontentsline{toc}{section}{\thesection\space #1}
       \input{background.tex}
     \end{flushleft}
   }%
@@ -332,9 +373,12 @@
 
 \NewDocumentCommand{\Procedure}{O{Experimental Procedure}}{
   \clearpage
+  \thispagestyle{plain}
   {\fontsize{12pt}{14pt}\selectfont
   \begin{flushleft}
-      \section{#1}
+      \section*{#1}
+      \refstepcounter{section}
+      \addcontentsline{toc}{section}{\thesection\space #1}
       \input{procedure.tex}
     \end{flushleft}
   }%
@@ -343,9 +387,12 @@
 
 \NewDocumentCommand{\ResultsandDiscussion}{O{Results and Discussion}}{
   \clearpage
+  \thispagestyle{plain}
   {\fontsize{12pt}{14pt}\selectfont
   \begin{flushleft}
-      \section{#1}
+      \section*{#1}
+      \refstepcounter{section}
+      \addcontentsline{toc}{section}{\thesection\space #1}
       \input{results.tex}
     \end{flushleft}
   }%
@@ -354,9 +401,12 @@
 
 \NewDocumentCommand{\Conclusion}{O{Conclusion}}{
   \clearpage
+  \thispagestyle{plain}
   {\fontsize{12pt}{14pt}\selectfont
   \begin{flushleft}
-      \section{#1}
+      \section*{#1}
+      \refstepcounter{section}
+      \addcontentsline{toc}{section}{\thesection\space #1}
       \input{conclusion.tex}
     \end{flushleft}
   }%
@@ -365,9 +415,12 @@
 
 \NewDocumentCommand{\FutureWork}{O{Future Work}}{%
   \clearpage
+  \thispagestyle{plain}
   {\fontsize{12pt}{14pt}\selectfont
     \begin{flushleft}
-      \section{#1}
+      \section*{#1}
+      \refstepcounter{section}
+      \addcontentsline{toc}{section}{\thesection\space #1}
       \input{future_work.tex}
     \end{flushleft}
   }%
@@ -376,9 +429,12 @@
 
 \newcommand{\ExtraSection}[2]{
   \clearpage
+  \thispagestyle{plain}
   {\fontsize{12pt}{14pt}\selectfont
   \begin{flushleft}
-      \section{#1}
+      \section*{#1}
+      \refstepcounter{section}
+      \addcontentsline{toc}{section}{\thesection\space #1}
       \input{#2}
     \end{flushleft}
   }%
@@ -387,9 +443,10 @@
 
 \newcommand{\References}{
   \clearpage
+  \thispagestyle{plain}
   {\fontsize{12pt}{14pt}\selectfont
     \nocite{*}
-    \bibliographystyle{IEEEtran} %Type?
+    \bibliographystyle{IEEEtran} %TODO add changable type?
     \bibliography{references}
   }%
   \newpage
@@ -397,17 +454,17 @@
 
 \newcommand{\Appendix}[1]{
   \clearpage
+  \thispagestyle{plain}
   {\fontsize{12pt}{14pt}\selectfont
   \begin{flushleft}
-    
-    \section{Appendix #1}
+    \FrontSection{Appendix #1}
     \input{appendix#1.tex}
   \end{flushleft}
   }%
   \newpage
 }
 
-
+%TODO -> 
 % % ======================================================
 % % \CodeSideBySide
 % %   #1 file1

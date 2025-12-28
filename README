@@ -1,3 +1,6 @@
+All of the functions from the library are pascal case as camel case is already used by Latex and all other naming convensions suck, this is an easy way to differentiate where your functions are from. 
+
+If there is anything you want/need or if you spot a mistake please open an issue! I really appreciate other people spotting errors before i run into the myself. 
 
 % Things i want to add
 % - images side by side, 2*2, ect
@@ -17,8 +20,38 @@
 
 ## List of Functions: 
 
+### Preamble information 
+Author
+AuthorID
+Street
+Postcode
+Suburb
+Unitcode (first unit code)
+Unitcodee (second unit code)
+Unitname (eg. Mechatronics Engineering Research Project)
+School (eg. School of Civil and Mechanical Engineering)
+Degree (eg. B. Eng. Mechatronic Engineering)
+Title
+Semester
+
 ### Structure 
 TitlePage
+IntroductoryLetter
+Acknowledgements
+Abstract
+Nomenclature
+TableOfContents
+
+### Sections
+Introduction
+Background
+Procedure
+ResultsandDiscussion
+Conclusion
+FutureWork
+ExtraSection
+References
+Appendix (eg. Appendix{A})
 
 ### Code:
 Code2Horizontal - 
