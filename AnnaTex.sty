@@ -39,6 +39,8 @@
 \usepackage{array}
 \usepackage{csvsimple}
 \usepackage{xparse}
+\usepackage{setspace}
+
 
 % --- Dependencies ---
 \RequirePackage{xcolor}
@@ -92,10 +94,12 @@
   }
 }
 
+\onehalfspacing
+
 
 % ----------- Start document in roman numeral numbering -----------
 \AtBeginDocument{%
-  \pagenumbering{roman}
+  
 }
 
 % ----------- Sections should be 1.0 ect (not 1) -----------
@@ -171,12 +175,28 @@
   \renewcommand{\@Unitname}{#1}
 }
 
+\newcommand{\NoPageNumbers}{%
+  \clearpage
+  \pagenumbering{gobble}% no printing
+}
+
+\newcommand{\FrontMatter}{%
+  \clearpage
+  \pagenumbering{roman}
+  \setcounter{page}{1}
+}
+
+\newcommand{\MainMatter}{%
+  \clearpage
+  \pagenumbering{arabic}
+  \setcounter{page}{1}
+}
 
 % ----------- Generates title page from preamble information -----------
 \newcommand{\TitlePage}[0] {
   \newcommand{\HRule}{\rule{\linewidth}{0.5mm}} 
   \fontsize{12pt}{14pt}\selectfont
-  \thispagestyle{empty}
+  \NoPageNumbers
 
   \center
   \vspace*{3cm}
@@ -202,7 +222,7 @@
 
 % ----------- Generates the default introductory letter from preamble info -----------
 \newcommand{\IntroductoryLetter}[0] {
-  \thispagestyle{plain}
+  \NoPageNumbers
   \fontsize{12pt}{14pt}\selectfont
 
   \vspace*{2cm}
@@ -253,6 +273,7 @@
 % ----------- generates acknowledgment page from .tex file -----------
 \newcommand{\Acknowledgements}{%
   \clearpage
+  \FrontMatter
   \thispagestyle{plain}
   {\fontsize{12pt}{14pt}\selectfont
     \FrontSection{Acknowledgements}
@@ -344,7 +365,7 @@
 %Has a default title or user can put in their own
 \NewDocumentCommand{\Introduction}{O{Introduction}}{
   \clearpage
-  \pagenumbering{arabic}
+  \MainMatter
   {\fontsize{12pt}{14pt}\selectfont
   \begin{flushleft}
       \section*{#1} %Ensures that the contents doesnt mess with the number formatting
