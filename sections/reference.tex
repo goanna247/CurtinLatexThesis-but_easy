@@ -1,0 +1,178 @@
+\documentclass[12pt]{article}
+\usepackage[a4paper, margin=2.54cm]{geometry}
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage{enumitem}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{filecontents}
+\usepackage{verbatim}
+\usepackage{adjustbox}
+\usepackage{eurosym}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{array}
+\usepackage{float}
+\usepackage[normalem]{ulem}
+\usepackage{tabularx}
+\usepackage{csvsimple}
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage[final]{minted}
+\usepackage{caption}
+\usepackage{multicol}
+\usepackage{float}
+\usepackage{tcolorbox}
+\tcbuselibrary{listings,skins,breakable}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{caption}
+\usepackage{float}
+\usepackage{anna}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc} 
+\usepackage{listingsutf8}
+
+\lstdefinelanguage{OCaml}{
+  morekeywords={
+    let,rec,fun,match,with,try,except,raise,if,then,else,begin,end,
+    type,module,open,struct,sig,include,object,method,val,inherit,new,of,
+    and,mutable,for,to,downto,while,do,done,as,when,assert,virtual,private,
+    external,nonrec,exception
+  },
+  sensitive=true,
+  morecomment=[s]{(*}{*)},
+  morestring=[b]",
+}
+
+\lstdefinelanguage{Bash}{
+  morekeywords={if,then,else,elif,fi,for,while,in,do,done,case,esac,echo,exit,return,function,select,until},
+  sensitive=true,
+  morecomment=[l]{\#},
+  morestring=[b]",
+  morestring=[b]',
+  keywordstyle=\color{blue!60!black}\bfseries,
+  stringstyle=\color{green!40!black},
+  commentstyle=\itshape\color{gray!70},
+  basicstyle=\ttfamily\small,
+  showstringspaces=false,
+  breaklines=true
+}
+
+\hbadness=10000      % suppresses "Underfull \hbox" warnings
+\hfuzz=1pt           % ignore tiny overfull hboxes
+\vfuzz=1pt           % ignore tiny overfull vboxes
+\emergencystretch=3em %
+
+
+\lstdefinelanguage{TOML}{
+  morecomment=[l]{\#},
+  morestring=[b]",
+  morestring=[b]',
+  morekeywords={true,false},
+  alsoletter={-},
+  moredelim=[s][\color{blue!60!black}]{[}{]},
+  moredelim=[s][\color{blue!60!black}]{\{}{\}},
+  keywordstyle=\color{blue!60!black}\bfseries,
+  stringstyle=\color{green!40!black},
+  commentstyle=\color{gray!70}\itshape,
+  basicstyle=\ttfamily\small,
+  showstringspaces=false,
+  breaklines=true
+}
+
+
+
+\lstdefinelanguage{Rust}{
+  morekeywords={
+    as,break,const,continue,crate,else,enum,extern,false,fn,for,if,impl,in,let,loop,match,mod,move,mut,pub,ref,return,self,Self,static,struct,super,trait,true,type,unsafe,use,where,while,async,await,dyn
+  },
+  sensitive=true,
+  morecomment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  morestring=[b]",
+  morestring=[b]',
+}
+
+
+\lstset{
+  basicstyle=\ttfamily\small,
+  numbers=left,
+  numberstyle=\tiny,
+  breaklines=true,
+  tabsize=2,
+  showstringspaces=false,
+}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{gray}{0.95}
+
+
+\setlist{nolistsep}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+\lstset{style=mystyle}
+
+% \fancyhf{}
+% \fancyfoot[RO,LE]{\thepage}
+% \renewcommand{\headrulewidth}{0pt} % Remove header line
+
+\newcommand{\TODO}[1][]{%
+    \ifx\relax#1\relax
+        {\color{red}\textbf{(TODO)}}
+    \else
+        {\color{red}\textbf{(TODO: #1)}}
+    \fi
+}
+
+\makeatletter
+\def\MintedPygmentize{C:/Users/User/AppData/Roaming/Python/Python312/Scripts/pygmentize.exe}
+\makeatother
+
+\begin{document}
+
+\TitlePage{}
+
+%----------------------------------------------------------------------------------------
+%	Table of Contents
+%----------------------------------------------------------------------------------------
+\pagenumbering{roman}
+\tableofcontents
+% %\newpage
+
+\listoffigures %TODO - make sure that every peice of code is wrapped with a figure to ensure it's included here
+\newpage
+%----------------------------------------------------------------------------------------
+%	INTRODUCTION
+%----------------------------------------------------------------------------------------
+\pagenumbering{arabic}
+
+
+\nocite{*} %Haha in text citations
+\bibliographystyle{IEEEtran}
+\bibliography{references}
+
+\end{document}
